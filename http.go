@@ -44,7 +44,7 @@ type CmdConnect struct {
 }
 
 func wsHandler(w http.ResponseWriter, r *http.Request) {
-
+	upgrader.CheckOrigin = func(r *http.Request) bool { return true }
 	gconn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Println(err)
